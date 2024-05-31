@@ -1,3 +1,0 @@
-python3 kineticEFM.py ../ccmRoss_newBiom/param_ecoli_biomRoss.xls ../ccmRoss_newBiom/output_total.csv ../ccmRoss_newBiom/ccm_ross.xml
-
-python3 ../DRAW/efm_sbml.py ../DRAW/ccm_ross/ccm_ecoli_2022.xml ../ccmRoss_newBiom/kineticDraw.csv
