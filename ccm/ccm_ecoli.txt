@@ -1,0 +1,87 @@
+-METEXT 
+ACETATE-ext CO2-ext ETOH-ext FORMATE-ext GLU-ext LACTATE-ext OXY-ext H-ext SUCC-ext H2O-ext P-ext BIOMASS  
+ 
+-CAT 
+#glycolysis :
+pts : GLU-ext + PEP => GLU-6-P + PYR 
+pgi : GLU-6-P = FRU-6-P 
+pfk : FRU-6-P + ATP => FRU-BIS-P + ADP + H
+fbp : FRU-BIS-P + H2O => FRU-6-P + P 
+ald : FRU-BIS-P = DHAP + GA-3P 
+tim : DHAP = GA-3P 
+gap : GA-3P + NAD + P = DPG + NADH + H
+pgk : DPG + ADP = PG3 + ATP
+pgm : PG3 = PG 
+pgh : PG = PEP + H2O
+pyk : PEP + ADP + H = PYR + ATP 
+#pps : PYR + ATP => PEP + ADP + 2 H 
+ 
+#PPP :
+zwf : GLU-6-P + NADP => GLU-LAC-6-P + NADPH + H
+glh : GLU-LAC-6-P + H2O => GLUCO-6-P + H
+pgd : GLUCO-6-P + NADP => RIBULOSE-5-P + NADPH + CO2 
+rpe : RIBULOSE-5-P = XYL-5-P 
+rpi : RIBULOSE-5-P = RIBOSE-5-P 
+tkt1 : RIBOSE-5-P + XYL-5-P = SED-7-P + GA-3P 
+tal : GA-3P + SED-7-P = ERYTH-4-P + FRU-6-P 
+tkt2 : ERYTH-4-P + XYL-5-P = GA-3P + FRU-6-P 
+ 
+#TCA cycle :
+pfl : PYR + CoA => ACETYL-CoA + FORMATE 
+pdh : PYR + NAD + CoA => ACETYL-CoA + CO2 + NADH
+csn : OXALO + ACETYL-CoA + H2O => CITRATE + CoA + H
+acn : CITRATE = ISOCIT 
+icd : ISOCIT + NADP => AKG + NADPH + CO2
+kgd : AKG + NAD + CoA => NADH + SUCC-CoA + CO2
+scs : SUCC-CoA + ADP + P = SUCC + ATP + CoA 
+frd : FUMARATE + Q8H2 => SUCC + Q8 
+sdh : SUCC + Q8 => FUMARATE + Q8H2 
+fum : FUMARATE + H2O = MALATE 
+mdh : MALATE + NAD = OXALO + NADH + H
+
+
+icl : ISOCIT = glyoxylate + SUCC
+mas : ACETYL-CoA + glyoxylate + H2O => CoA + H + MALATE
+ 
+#Anapleurituc reactions :
+ppc : PEP + CO2 + H2O => OXALO + H + P 
+me : MALATE + NADP => PYR + NADPH + CO2 
+ppck : OXALO + ATP => PEP + ADP + CO2 
+
+gln : ATP + L-glutamate => ADP + L-glutamine + P
+glt : AKG + L-glutamine + H + NADPH => 2 L-glutamate + NADP
+gdh : AKG + 2 H + NADPH = L-glutamate + NADP + H2O
+
+
+#Redox-associated reactions :
+ldh : PYR + NADH + H = LACTATE + NAD 
+ada : ACETYL-CoA + NADH + H = ACALD + NAD + CoA 
+adh : ACALD + NADH + H = ETOH + NAD 
+pta : ACETYL-CoA + P = ACETYL-P + CoA 
+ack : ACETYL-P + ADP = ACETATE + ATP
+edd : GLUCO-6-P => KDPG 
+eda : KDPG = GA-3P + PYR 
+
+#Oxidative phosphorylation :
+nadh-dh : 5 H + NADH + Q8 => 4 H-ext + NAD + Q8H2
+cytbd : 2 H + 0.5 O2 + Q8H2 => 2 H-ext + Q8
+atp-synth : ADP + 4 H-ext + P = ATP + 3 H + H2O
+nad-thd : NAD + NADPH = NADH + NADP
+ 
+#biomass from 22_workbook_aids Carlson Cmol=36.16 
+#biomass :  0.00005 GLU-6-P + 0.00069 RIBOSE-5-P + 0.00041 ERYTH-4-P + 0.0021 PEP + 0.00313 PYR + 0.00095 ACETYL-CoA + 0.00188 OXALO + 0.0829 ATP + 0.00326 NAD + 0.01353 NADPH + 0.00277 L-glutamine + 0.0044 L-glutamate + 0.07283 H2O => BIOMASS + 0.00095 CoA + 0.0829 ADP + 0.00326 NADH + 0.01353 NADP + 0.06888 H + 0.00604 AKG + 0.08493 P
+
+biomass :  0.05 GLU-6-P + 0.69 RIBOSE-5-P + 0.41 ERYTH-4-P + 2.1 PEP + 3.13 PYR + 0.95 ACETYL-CoA + 1.88 OXALO + 82.9 ATP + 3.26 NAD + 13.53 NADPH + 2.77 L-glutamine + 4.4 L-glutamate + 72.83 H2O =>  BIOMASS + 0.95 CoA + 82.9 ADP + 3.26 NADH + 13.53 NADP + 68.88 H + 6.04 AKG + 84.93 P
+
+#Membrane Transport reactions :
+ex-etoh : ETOH => ETOH-ext 
+ex-ace : ACETATE + H = ACETATE-ext + H-ext
+ex-lac : LACTATE + H => LACTATE-ext + H-ext
+ex-suc : SUCC + 2 H => SUCC-ext + 2 H-ext
+ex-for : FORMATE + H => FORMATE-ext + H-ext
+ex-co2 : CO2 => CO2-ext 
+ex-o2 : OXY-ext => O2
+ex-P : P-ext + H-ext => H + P
+ex-h2o : H2O-ext = H2O
+
+
